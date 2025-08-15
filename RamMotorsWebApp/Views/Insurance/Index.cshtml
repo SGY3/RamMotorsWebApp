@@ -1,0 +1,98 @@
+﻿@using RamMotorsWebApp.Models.ViewModels
+@model InsuranceInquiryViewModel
+@{
+    ViewData["Title"] = "Insurance Services - Ram Motors";
+}
+
+<div class="container mt-5">
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Insurance Services</h1>
+        <p class="lead text-muted">
+            Protect your vehicle with our trusted insurance plans. We offer coverage for cars, bikes, and commercial vehicles.
+        </p>
+    </div>
+
+    <!-- Insurance Types -->
+    <div class="row text-center mb-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="/images/car-insurance.png" class="card-img-top" alt="Car Insurance">
+                <div class="card-body">
+                    <h5 class="card-title">Car Insurance</h5>
+                    <p class="card-text">Comprehensive coverage for your four-wheeler, protecting against accidents, theft, and natural calamities.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="/images/bike-insurance.png" class="card-img-top" alt="Bike Insurance">
+                <div class="card-body">
+                    <h5 class="card-title">Two-Wheeler Insurance</h5>
+                    <p class="card-text">Affordable and hassle-free insurance plans for your two-wheeler with instant policy issuance.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="/images/commercial-insurance.png" class="card-img-top" alt="Commercial Insurance">
+                <div class="card-body">
+                    <h5 class="card-title">Commercial Vehicle Insurance</h5>
+                    <p class="card-text">Tailored plans to protect your business fleet against accidents, damage, and third-party liabilities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inquiry Form -->
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Get an Insurance Quote</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Inquiry" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Phone" class="form-label"></label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="InsuranceType" class="form-label"></label>
+                        <select asp-for="InsuranceType" class="form-select">
+                            <option value="">-- Select --</option>
+                            <option>Car Insurance</option>
+                            <option>Two-Wheeler Insurance</option>
+                            <option>Commercial Vehicle Insurance</option>
+                        </select>
+                        <span asp-validation-for="InsuranceType" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Message" class="form-label"></label>
+                    <textarea asp-for="Message" class="form-control"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success px-4">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
