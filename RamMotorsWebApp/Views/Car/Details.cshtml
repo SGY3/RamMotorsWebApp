@@ -1,0 +1,146 @@
+﻿@model Car
+
+@{
+    ViewData["Title"] = "Car Details";
+}
+
+<div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="row g-0">
+            <div class="col-md-5">
+                <img src="@Model.ImageUrl" class="img-fluid rounded-start w-100" style="height: 100%; max-height: 400px; object-fit: cover;" alt="@Model.Title">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h3 class="card-title">@Model.Title</h3>
+                    <h5 class="text-muted mb-3">@Model.Make @Model.Model</h5>
+
+                    <div class="row mb-2">
+                        <div class="col-6"><strong>Registration:</strong> @Model.RegistrationMonth @Model.RegistrationYear</div>
+                        <div class="col-6"><strong>Manufacture Year:</strong> @Model.ManufactureYear</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6"><strong>Fuel Type:</strong> @Model.FuelType</div>
+                        <div class="col-6"><strong>Owner Count:</strong> @Model.OwnerCount</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6"><strong>KM Driven:</strong> @Model.KMDriven km</div>
+                        <div class="col-6"><strong>Insurance:</strong> @Model.Insurance</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6"><strong>Transmission:</strong> @Model.Transmission</div>
+                        <div class="col-6"><strong>Seats:</strong> @Model.Seats</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6"><strong>Power:</strong> @Model.Power BHP</div>
+                        <div class="col-6"><strong>Displacement:</strong> @Model.Displacement cc</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6"><strong>Mileage:</strong> @Model.Mileage km/l</div>
+                        <div class="col-6"><strong>Ground Clearance:</strong> @Model.GroundClearance</div>
+                    </div>
+                    
+                    <h4 class="text-success mt-4">₹ @Model.Price.ToString("N2")</h4>
+
+                    @if (Model.IsFeatured)
+                    {
+                        <span class="badge bg-warning text-dark">Featured</span>
+                    }
+
+                    <div class="mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Request Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@* 
+@{
+    ViewData["Title"] = "Car Details";
+}
+<div class="container">
+    <h2 class="mb-4">Car Details</h2>
+
+    <div class="card shadow-lg p-4">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid rounded" />
+            </div>
+            <div class="col-md-8">
+                <h3>@Model.Title</h3>
+                <dl class="row">
+                    <dt class="col-sm-4">Make</dt>
+                    <dd class="col-sm-8">@Model.Make</dd>
+
+                    <dt class="col-sm-4">Model</dt>
+                    <dd class="col-sm-8">@Model.Model</dd>
+
+                    <dt class="col-sm-4">Registration Month</dt>
+                    <dd class="col-sm-8">@Model.RegistrationMonth</dd>
+
+                    <dt class="col-sm-4">Registration Year</dt>
+                    <dd class="col-sm-8">@Model.RegistrationYear</dd>
+
+                    <dt class="col-sm-4">Manufacture Year</dt>
+                    <dd class="col-sm-8">@Model.ManufactureYear</dd>
+
+                    <dt class="col-sm-4">Fuel Type</dt>
+                    <dd class="col-sm-8">@Model.FuelType</dd>
+
+                    <dt class="col-sm-4">Owner Count</dt>
+                    <dd class="col-sm-8">@Model.OwnerCount</dd>
+
+                    <dt class="col-sm-4">Kilometers Driven</dt>
+                    <dd class="col-sm-8">@Model.KMDriven km</dd>
+
+                    <dt class="col-sm-4">Price</dt>
+                    <dd class="col-sm-8">₹@Model.Price.ToString("N2")</dd>
+
+                    <dt class="col-sm-4">Insurance</dt>
+                    <dd class="col-sm-8">@Model.Insurance</dd>
+
+                    <dt class="col-sm-4">Seats</dt>
+                    <dd class="col-sm-8">@Model.Seats</dd>
+
+                    <dt class="col-sm-4">Displacement (cc)</dt>
+                    <dd class="col-sm-8">@Model.Displacement</dd>
+
+                    <dt class="col-sm-4">Power (bhp)</dt>
+                    <dd class="col-sm-8">@Model.Power</dd>
+
+                    <dt class="col-sm-4">Mileage (kmpl)</dt>
+                    <dd class="col-sm-8">@Model.Mileage</dd>
+
+                    <dt class="col-sm-4">Drive Type</dt>
+                    <dd class="col-sm-8">@Model.DriveType</dd>
+
+                    <dt class="col-sm-4">Transmission</dt>
+                    <dd class="col-sm-8">@Model.Transmission</dd>
+
+                    <dt class="col-sm-4">Ground Clearance</dt>
+                    <dd class="col-sm-8">@Model.GroundClearance</dd>
+
+                    <dt class="col-sm-4">Featured?</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.IsFeatured)
+                        {
+                            <span class="badge bg-success">Yes</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">No</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div> *@

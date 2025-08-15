@@ -1,0 +1,61 @@
+﻿@using RamMotorsWebApp.Models.ViewModels
+@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Car Listings";
+}
+
+<div class="container">
+    @*     <h2 class="text-center">Buy Used Cars</h2>
+    <div class="row">
+    @foreach (var car in Model.FeaturedCars)
+    {
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm">
+                <img src="@car.ImageUrl" class="card-img-top" alt="Honda City">
+                <div class="card-body">
+                    <h5 class="card-title">@car.Make @car.Model @car.RegistrationYear</h5>
+                    <p class="card-text">₹@car.Price - "car.City"</p>
+                    <a href="/Car/Details/@car.Id" class="btn btn-sm btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+    }
+</div> *@
+
+
+    <h2 class="mb-4">Available Cars</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var car in Model.FeaturedCars)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="@car.ImageUrl" class="card-img-top" alt="@car.Title" style="height: 200px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title">@car.Title</h5>
+                        <p class="card-text text-muted">@car.Make @car.Model</p>
+
+                        <ul class="list-unstyled small mb-3">
+                            <li><strong>Fuel:</strong> @car.FuelType</li>
+                            <li><strong>KM Driven:</strong> @car.KMDriven km</li>
+                            <li><strong>Year:</strong> @car.RegistrationYear</li>
+                            <li><strong>Price:</strong> ₹@car.Price.ToString("N2")</li>
+                        </ul>
+
+                        <a href="@Url.Action("Details", "Car", new { id = car.Id })" class="btn btn-primary w-100">
+                            View Details
+                        </a>
+                    </div>
+
+                    @if (car.IsFeatured)
+                    {
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <span class="badge bg-warning text-dark">Featured</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

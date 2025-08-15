@@ -1,0 +1,189 @@
+﻿@using RamMotorsWebApp.Models.ViewModels
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container-fluid">
+    <!-- 🔁 1. Promotional Banners -->
+    <div id="promoBanner" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/images/image1.jpg" class="d-block w-100" alt="Promo 1">
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/image2.jpg" class="d-block w-100" alt="Promo 2">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#promoBanner" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#promoBanner" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="container">
+    <!-- 🔍 2. Search Box -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-body">
+            <form asp-controller="Car" asp-action="Search" method="get">
+                <div class="row g-2">
+                    <div class="col-md-3">
+                        <input name="make" class="form-control" placeholder="Make (e.g. Honda)">
+                    </div>
+                    <div class="col-md-3">
+                        <input name="model" class="form-control" placeholder="Model (e.g. City)">
+                    </div>
+                    <div class="col-md-3">
+                        <input name="city" class="form-control" placeholder="City">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary w-100">Search Cars</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 🛠 3. Services Overview -->
+    <div class="row text-center mb-5">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Buy & Sell Used Cars</h5>
+                    <p>Browse and list cars with ease.</p>
+                    <a href="/Car" class="btn btn-outline-primary">Explore Cars</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">RTO Services</h5>
+                    <p>RC Transfer, License, NOC, and more.</p>
+                    <a href="/RTO" class="btn btn-outline-success">RTO Services</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Insurance Services</h5>
+                    <p>Buy or renew your car insurance.</p>
+                    <a href="/Insurance" class="btn btn-outline-warning">Get Insured</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚗 4. Featured Cars -->
+    <div class="mb-5">
+        <h4>Featured Used Cars</h4>
+        <div class="row">
+            @* Example - Replace with dynamic loop *@
+            @foreach (var car in Model.FeaturedCars)
+            {
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@car.ImageUrl" class="card-img-top" alt="Honda City">
+                        <div class="card-body">
+                            <h5 class="card-title">@car.Make @car.Model @car.RegistrationYear</h5>
+                            <p class="card-text">₹@car.Price - @car.City</p>
+                            <a href="/Car/Details/@car.Id" class="btn btn-sm btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more static or dynamic cards -->
+            }
+        </div>
+    </div>
+
+    <!-- 💡 5. Why Choose Us -->
+    <div class="text-center my-5">
+        <h4>Why Choose Us?</h4>
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <i class="bi bi-shield-check fs-2"></i>
+                <p>Verified Cars</p>
+            </div>
+            <div class="col-md-3">
+                <i class="bi bi-currency-rupee fs-2"></i>
+                <p>Fair Prices</p>
+            </div>
+            <div class="col-md-3">
+                <i class="bi bi-file-earmark-text fs-2"></i>
+                <p>End-to-End Paperwork</p>
+            </div>
+            <div class="col-md-3">
+                <i class="bi bi-clock-history fs-2"></i>
+                <p>Quick Processing</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📊 6. Stats -->
+    <div class="bg-light py-4 my-5">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <h2>5K+</h2>
+                <p>Cars Sold</p>
+            </div>
+            <div class="col-md-3">
+                <h2>2K+</h2>
+                <p>Insurance Issued</p>
+            </div>
+            <div class="col-md-3">
+                <h2>3K+</h2>
+                <p>RTO Services</p>
+            </div>
+            <div class="col-md-3">
+                <h2>50+</h2>
+                <p>Trusted Dealers</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🌟 7. Testimonials -->
+    <div class="mb-5">
+        <h4>What Our Customers Say</h4>
+        <div class="row">
+            <div class="col-md-4">
+                <blockquote class="blockquote">
+                    <p>"Quick service and smooth car delivery!"</p>
+                    <footer class="blockquote-footer">Raj Mehta</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote">
+                    <p>"Helped with insurance and RC transfer easily."</p>
+                    <footer class="blockquote-footer">Sneha Patel</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📰 8. Blog / Tips -->
+    <div class="mb-5">
+        <h4>Tips & Guides</h4>
+        <ul>
+            <li><a href="#">Checklist Before Buying a Used Car</a></li>
+            <li><a href="#">How to Apply for NOC Online</a></li>
+        </ul>
+    </div>
+
+    <!-- 📧 9. Newsletter -->
+    <div class="text-center bg-primary text-white p-4 rounded">
+        <h5>Get Updates & Offers</h5>
+        <form class="row justify-content-center mt-3">
+            <div class="col-md-4">
+                <input type="email" class="form-control" placeholder="Enter your email">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-light">Subscribe</button>
+            </div>
+        </form>
+    </div>
+
+</div>

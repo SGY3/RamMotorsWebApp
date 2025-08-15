@@ -1,0 +1,152 @@
+﻿@model IEnumerable<RamMotorsWebApp.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Make)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegistrationMonth)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegistrationYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ManufactureYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FuelType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OwnerCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KMDriven)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsFeatured)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Insurance)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Seats)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Displacement)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Power)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mileage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DriveType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Transmission)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GroundClearance)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Make)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistrationMonth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistrationYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ManufactureYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FuelType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OwnerCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KMDriven)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsFeatured)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Insurance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Seats)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Displacement)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Power)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mileage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DriveType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Transmission)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GroundClearance)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
