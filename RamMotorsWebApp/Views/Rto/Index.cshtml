@@ -4,70 +4,88 @@
 }
 
 <section class="container py-5">
-    <h2 class="text-center mb-4">RTO Services</h2>
-    <p class="text-center text-muted">We provide hassle-free RTO-related services for your vehicle. Fill out the form below to get started.</p>
+    <!-- Heading -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">RTO Services</h2>
+        <p class="text-muted lead">
+            Hassle-free vehicle RTO solutions — quick, reliable, and professional.
+        </p>
+    </div>
 
+    <!-- Success Message -->
     @if (TempData["Success"] != null)
     {
-        <div class="alert alert-success text-center">
-            @TempData["Success"]
+        <div class="alert alert-success text-center shadow-sm rounded-3">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["Success"]
         </div>
     }
 
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <h4>Our RTO Services Include:</h4>
-            <ul>
-                <li>Vehicle Registration</li>
-                <li>Ownership Transfer</li>
-                <li>Duplicate RC Issuance</li>
-                <li>Address Change in RC</li>
-                <li>Hypothecation Removal</li>
-                <li>Road Tax Payment Assistance</li>
-            </ul>
+    <div class="row g-5">
+        <!-- Services List -->
+        <div class="col-md-5">
+            <div class="p-4 bg-light rounded-4 shadow-sm h-100">
+                <h4 class="fw-semibold mb-4">Our RTO Services Include</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><i class="bi bi-car-front-fill text-primary me-2"></i> Vehicle Registration</li>
+                    <li class="mb-3"><i class="bi bi-person-badge-fill text-success me-2"></i> Ownership Transfer</li>
+                    <li class="mb-3"><i class="bi bi-files text-warning me-2"></i> Duplicate RC Issuance</li>
+                    <li class="mb-3"><i class="bi bi-house-fill text-info me-2"></i> Address Change in RC</li>
+                    <li class="mb-3"><i class="bi bi-check-circle-fill text-danger me-2"></i> Hypothecation Removal</li>
+                    <li class="mb-3"><i class="bi bi-cash-coin text-secondary me-2"></i> Road Tax Payment Assistance</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="col-md-6">
-            <h4>Request RTO Service</h4>
-            <form asp-action="Submit" method="post">
-                <div class="mb-3">
-                    <label asp-for="Name" class="form-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Phone" class="form-label"></label>
-                    <input asp-for="Phone" class="form-control" />
-                    <span asp-validation-for="Phone" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="ServiceType" class="form-label">Service Type</label>
-                    <select asp-for="ServiceType" class="form-select">
-                        <option value="">Select Service</option>
-                        <option>Vehicle Registration</option>
-                        <option>Ownership Transfer</option>
-                        <option>Duplicate RC</option>
-                        <option>Address Change</option>
-                        <option>Hypothecation Removal</option>
-                        <option>Road Tax Payment</option>
-                    </select>
-                    <span asp-validation-for="ServiceType" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="VehicleNumber" class="form-label">Vehicle Number (Optional)</label>
-                    <input asp-for="VehicleNumber" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Message" class="form-label">Additional Details</label>
-                    <textarea asp-for="Message" class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Submit Request</button>
-            </form>
+        <!-- Request Form -->
+        <div class="col-md-7">
+            <div class="p-4 bg-white rounded-4 shadow-lg">
+                <h4 class="fw-semibold mb-4">Request RTO Service</h4>
+                <form asp-action="Submit" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label asp-for="Name" class="form-label"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter your full name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Phone" class="form-label"></label>
+                            <input asp-for="Phone" class="form-control" placeholder="Enter phone number" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter email address" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="ServiceType" class="form-label">Service Type</label>
+                            <select asp-for="ServiceType" class="form-select">
+                                <option value="">Select Service</option>
+                                <option>Vehicle Registration</option>
+                                <option>Ownership Transfer</option>
+                                <option>Duplicate RC</option>
+                                <option>Address Change</option>
+                                <option>Hypothecation Removal</option>
+                                <option>Road Tax Payment</option>
+                            </select>
+                            <span asp-validation-for="ServiceType" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="VehicleNumber" class="form-label">Vehicle Number (Optional)</label>
+                            <input asp-for="VehicleNumber" class="form-control" placeholder="e.g., MH12AB1234" />
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="Message" class="form-label">Additional Details</label>
+                            <textarea asp-for="Message" class="form-control" rows="3" placeholder="Enter extra details"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary w-100 py-2">
+                                <i class="bi bi-send-fill me-2"></i> Submit Request
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>

@@ -1,39 +1,70 @@
 ﻿@model Registration
 
-<form method="post">
-    <div class="container border p-3">
-        <div class="row text-center p-3">
-            <h1>Register</h1>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="Email" class="form-control" placeholder="Email.." />
-                <span asp-validation-for="Email" class="text-danger" />
-            </div>
-            <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="FirstName" class="form-control" placeholder="First Name.." />
-                <span asp-validation-for="FirstName" class="text-danger" />
-            </div>
-            <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="LastName" class="form-control" placeholder="Last Name.." />
-                <span asp-validation-for="LastName" class="text-danger" />
-            </div>
-            <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="PhoneNumber" class="form-control" placeholder="Phone.." />
-                <span asp-validation-for="PhoneNumber" class="text-danger" />
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background: linear-gradient(135deg, #f8fafc, #e0f2fe);">
+    <div class="card shadow-lg border-0 rounded-4" style="max-width: 500px; width: 100%;">
+        <div class="card-body p-5">
+            <div class="text-center mb-4">
+                <i class="bi bi-person-plus-fill text-success" style="font-size: 3rem;"></i>
+                <h2 class="fw-bold text-dark mt-2">Create Account</h2>
+                <p class="text-muted">Fill in your details to get started</p>
             </div>
 
-            <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="Password" type="password" class="form-control" placeholder="Password.." />
-                <span asp-validation-for="Password" class="text-danger" />
-            </div>
-            <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <button type="submit" class="form-control btn btn-success" value="Submit">Register</button>
-            </div>
+            <form method="post">
+                <div class="mb-3">
+                    <input asp-for="Email" class="form-control form-control-lg rounded-pill" placeholder="Email address" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input asp-for="FirstName" class="form-control form-control-lg rounded-pill" placeholder="First Name" />
+                    <span asp-validation-for="FirstName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input asp-for="LastName" class="form-control form-control-lg rounded-pill" placeholder="Last Name" />
+                    <span asp-validation-for="LastName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input asp-for="PhoneNumber" class="form-control form-control-lg rounded-pill" placeholder="Phone Number" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input asp-for="Password" type="password" class="form-control form-control-lg rounded-pill" placeholder="Password" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-gradient-success rounded-pill fw-semibold">Register</button>
+                </div>
+
+                <div class="text-center">
+                    <small class="text-muted">
+                        Already have an account?
+                        <a asp-controller="Auth" asp-action="Login" class="text-success fw-semibold">Login</a>
+                    </small>
+                </div>
+            </form>
         </div>
     </div>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<style>
+    .btn-gradient-success {
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        color: white;
+        border: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-gradient-success:hover {
+            background: linear-gradient(90deg, #15803d, #166534);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.4);
+        }
+</style>

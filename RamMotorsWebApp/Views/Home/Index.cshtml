@@ -4,10 +4,10 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="container-fluid">
-    <!-- 🔁 1. Promotional Banners -->
+<!-- 🔁 1. Promotional Banner -->
+<section class="p-0">
     <div id="promoBanner" class="carousel slide mb-5" data-bs-ride="carousel">
-        <div class="carousel-inner">
+        <div class="carousel-inner rounded-3 shadow-lg overflow-hidden">
             <div class="carousel-item active">
                 <img src="~/images/image1.jpg" class="d-block w-100" alt="Promo 1">
             </div>
@@ -22,168 +22,174 @@
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
-</div>
+</section>
 
-<div class="container">
-    <!-- 🔍 2. Search Box -->
-    <div class="card shadow-sm mb-5">
-        <div class="card-body">
-            <form asp-controller="Car" asp-action="Search" method="get">
-                <div class="row g-2">
-                    <div class="col-md-3">
-                        <input name="make" class="form-control" placeholder="Make (e.g. Honda)">
+<!-- 🔍 2. Search Box -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-4">
+                <form asp-controller="Car" asp-action="Search" method="get">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <input name="make" class="form-control" placeholder="Make (e.g. Honda)">
+                        </div>
+                        <div class="col-md-3">
+                            <input name="model" class="form-control" placeholder="Model (e.g. City)">
+                        </div>
+                        <div class="col-md-3">
+                            <input name="city" class="form-control" placeholder="City">
+                        </div>
+                        <div class="col-md-3 d-grid">
+                            <button type="submit" class="btn btn-gradient">🔍 Search Cars</button>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <input name="model" class="form-control" placeholder="Model (e.g. City)">
-                    </div>
-                    <div class="col-md-3">
-                        <input name="city" class="form-control" placeholder="City">
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary w-100">Search Cars</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- 🛠 3. Services Overview -->
-    <div class="row text-center mb-5">
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Buy & Sell Used Cars</h5>
-                    <p>Browse and list cars with ease.</p>
-                    <a href="/Car" class="btn btn-outline-primary">Explore Cars</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">RTO Services</h5>
-                    <p>RC Transfer, License, NOC, and more.</p>
-                    <a href="/RTO" class="btn btn-outline-success">RTO Services</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Insurance Services</h5>
-                    <p>Buy or renew your car insurance.</p>
-                    <a href="/Insurance" class="btn btn-outline-warning">Get Insured</a>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- 🚗 4. Featured Cars -->
-    <div class="mb-5">
-        <h4>Featured Used Cars</h4>
+<!-- 🛠 3. Services Overview -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 shadow-sm border-0 service-card">
+                    <div class="card-body">
+                        <i class="bi bi-car-front fs-1 text-primary mb-3"></i>
+                        <h5 class="card-title fw-bold">Buy & Sell Used Cars</h5>
+                        <p class="text-muted">Browse and list cars with ease.</p>
+                        <a href="/Car" class="btn btn-outline-primary rounded-pill">Explore Cars</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 shadow-sm border-0 service-card">
+                    <div class="card-body">
+                        <i class="bi bi-card-checklist fs-1 text-success mb-3"></i>
+                        <h5 class="card-title fw-bold">RTO Services</h5>
+                        <p class="text-muted">RC Transfer, License, NOC, and more.</p>
+                        <a href="/RTO" class="btn btn-outline-success rounded-pill">RTO Services</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 shadow-sm border-0 service-card">
+                    <div class="card-body">
+                        <i class="bi bi-shield-lock fs-1 text-warning mb-3"></i>
+                        <h5 class="card-title fw-bold">Insurance Services</h5>
+                        <p class="text-muted">Buy or renew your car insurance.</p>
+                        <a href="/Insurance" class="btn btn-outline-warning rounded-pill">Get Insured</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 🚗 4. Featured Cars -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h3 class="fw-bold mb-4">🚗 Featured Used Cars</h3>
         <div class="row">
-            @* Example - Replace with dynamic loop *@
             @foreach (var car in Model.FeaturedCars)
             {
-                <div class="col-md-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                        <img src="@car.ImageUrl" class="card-img-top" alt="Honda City">
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-lg border-0 rounded-4 car-card">
+                        <img src="@car.ImageUrl" class="card-img-top rounded-top-4" alt="@car.Make">
                         <div class="card-body">
-                            <h5 class="card-title">@car.Make @car.Model @car.RegistrationYear</h5>
-                            <p class="card-text">₹@car.Price - @car.City</p>
-                            <a href="/Car/Details/@car.Id" class="btn btn-sm btn-primary">View</a>
+                            <h6 class="card-title fw-bold">@car.Make @car.Model (@car.RegistrationYear)</h6>
+                            <p class="text-muted">₹@car.Price • @car.City</p>
+                            <a href="/Car/Details/@car.Id" class="btn btn-sm btn-gradient w-100">View Details</a>
                         </div>
                     </div>
                 </div>
-                <!-- Add more static or dynamic cards -->
             }
         </div>
     </div>
+</section>
 
-    <!-- 💡 5. Why Choose Us -->
-    <div class="text-center my-5">
-        <h4>Why Choose Us?</h4>
-        <div class="row mt-3">
+<!-- 💡 5. Why Choose Us -->
+<section class="py-5">
+    <div class="container text-center">
+        <h3 class="fw-bold mb-4">💡 Why Choose Us?</h3>
+        <div class="row mt-4">
             <div class="col-md-3">
-                <i class="bi bi-shield-check fs-2"></i>
-                <p>Verified Cars</p>
+                <i class="bi bi-shield-check fs-2 text-primary"></i>
+                <p class="mt-2">Verified Cars</p>
             </div>
             <div class="col-md-3">
-                <i class="bi bi-currency-rupee fs-2"></i>
-                <p>Fair Prices</p>
+                <i class="bi bi-currency-rupee fs-2 text-success"></i>
+                <p class="mt-2">Fair Prices</p>
             </div>
             <div class="col-md-3">
-                <i class="bi bi-file-earmark-text fs-2"></i>
-                <p>End-to-End Paperwork</p>
+                <i class="bi bi-file-earmark-text fs-2 text-warning"></i>
+                <p class="mt-2">End-to-End Paperwork</p>
             </div>
             <div class="col-md-3">
-                <i class="bi bi-clock-history fs-2"></i>
-                <p>Quick Processing</p>
+                <i class="bi bi-clock-history fs-2 text-danger"></i>
+                <p class="mt-2">Quick Processing</p>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- 📊 6. Stats -->
-    <div class="bg-light py-4 my-5">
+<!-- 📊 6. Stats -->
+<section class="py-5 stats-section text-white">
+    <div class="container">
         <div class="row text-center">
-            <div class="col-md-3">
-                <h2>5K+</h2>
-                <p>Cars Sold</p>
-            </div>
-            <div class="col-md-3">
-                <h2>2K+</h2>
-                <p>Insurance Issued</p>
-            </div>
-            <div class="col-md-3">
-                <h2>3K+</h2>
-                <p>RTO Services</p>
-            </div>
-            <div class="col-md-3">
-                <h2>50+</h2>
-                <p>Trusted Dealers</p>
-            </div>
+            <div class="col-md-3"><h2 class="fw-bold">5K+</h2><p>Cars Sold</p></div>
+            <div class="col-md-3"><h2 class="fw-bold">2K+</h2><p>Insurance Issued</p></div>
+            <div class="col-md-3"><h2 class="fw-bold">3K+</h2><p>RTO Services</p></div>
+            <div class="col-md-3"><h2 class="fw-bold">50+</h2><p>Trusted Dealers</p></div>
         </div>
     </div>
+</section>
 
-    <!-- 🌟 7. Testimonials -->
-    <div class="mb-5">
-        <h4>What Our Customers Say</h4>
-        <div class="row">
-            <div class="col-md-4">
-                <blockquote class="blockquote">
+<!-- 🌟 7. Testimonials -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h3 class="fw-bold mb-4">🌟 What Our Customers Say</h3>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="testimonial p-4 rounded-4 shadow-sm">
                     <p>"Quick service and smooth car delivery!"</p>
-                    <footer class="blockquote-footer">Raj Mehta</footer>
-                </blockquote>
+                    <footer class="blockquote-footer mt-2">Raj Mehta</footer>
+                </div>
             </div>
-            <div class="col-md-4">
-                <blockquote class="blockquote">
+            <div class="col-md-6">
+                <div class="testimonial p-4 rounded-4 shadow-sm">
                     <p>"Helped with insurance and RC transfer easily."</p>
-                    <footer class="blockquote-footer">Sneha Patel</footer>
-                </blockquote>
+                    <footer class="blockquote-footer mt-2">Sneha Patel</footer>
+                </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- 📰 8. Blog / Tips -->
-    <div class="mb-5">
-        <h4>Tips & Guides</h4>
-        <ul>
-            <li><a href="#">Checklist Before Buying a Used Car</a></li>
-            <li><a href="#">How to Apply for NOC Online</a></li>
+<!-- 📰 8. Blog / Tips -->
+<section class="py-5">
+    <div class="container">
+        <h3 class="fw-bold mb-3">📰 Tips & Guides</h3>
+        <ul class="list-unstyled">
+            <li><a href="#" class="text-decoration-none text-primary">✔ Checklist Before Buying a Used Car</a></li>
+            <li><a href="#" class="text-decoration-none text-primary">✔ How to Apply for NOC Online</a></li>
         </ul>
     </div>
+</section>
 
-    <!-- 📧 9. Newsletter -->
-    <div class="text-center bg-primary text-white p-4 rounded">
-        <h5>Get Updates & Offers</h5>
-        <form class="row justify-content-center mt-3">
+<!-- 📧 9. Newsletter -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h4 class="fw-bold">📧 Get Updates & Offers</h4>
+        <form class="row justify-content-center mt-3 g-2">
             <div class="col-md-4">
-                <input type="email" class="form-control" placeholder="Enter your email">
+                <input type="email" class="form-control rounded-pill" placeholder="Enter your email">
             </div>
-            <div class="col-md-2">
-                <button class="btn btn-light">Subscribe</button>
+            <div class="col-md-2 d-grid">
+                <button class="btn btn-light rounded-pill">Subscribe</button>
             </div>
         </form>
     </div>
-
-</div>
+</section>

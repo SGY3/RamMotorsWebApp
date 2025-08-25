@@ -5,52 +5,55 @@
 }
 
 <div class="container my-5">
-    <div class="card shadow-lg">
+    <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
         <div class="row g-0">
-            <div class="col-md-5">
-                <img src="@Model.ImageUrl" class="img-fluid rounded-start w-100" style="height: 100%; max-height: 400px; object-fit: cover;" alt="@Model.Title">
+            <!-- Car Image -->
+            <div class="col-md-5 bg-light d-flex align-items-center">
+                <img src="@Model.ImageUrl"
+                     class="img-fluid rounded-start w-100"
+                     style="height: 100%; max-height: 450px; object-fit: cover;"
+                     alt="@Model.Title">
             </div>
-            <div class="col-md-7">
-                <div class="card-body">
-                    <h3 class="card-title">@Model.Title</h3>
-                    <h5 class="text-muted mb-3">@Model.Make @Model.Model</h5>
 
-                    <div class="row mb-2">
-                        <div class="col-6"><strong>Registration:</strong> @Model.RegistrationMonth @Model.RegistrationYear</div>
-                        <div class="col-6"><strong>Manufacture Year:</strong> @Model.ManufactureYear</div>
+            <!-- Car Info -->
+            <div class="col-md-7">
+                <div class="card-body p-4">
+                    <h2 class="card-title fw-bold">@Model.Title</h2>
+                    <h5 class="text-muted mb-4">@Model.Make @Model.Model</h5>
+
+                    <div class="row g-3">
+                        <div class="col-6"><i class="bi bi-calendar"></i> <strong>Reg:</strong> @Model.RegistrationMonth @Model.RegistrationYear</div>
+                        <div class="col-6"><i class="bi bi-gear"></i> <strong>Manufacture:</strong> @Model.ManufactureYear</div>
+
+                        <div class="col-6"><i class="bi bi-fuel-pump"></i> <strong>Fuel:</strong> @Model.FuelType</div>
+                        <div class="col-6"><i class="bi bi-person-badge"></i> <strong>Owner:</strong> @Model.OwnerCount</div>
+
+                        <div class="col-6"><i class="bi bi-speedometer"></i> <strong>KM Driven:</strong> @Model.KMDriven km</div>
+                        <div class="col-6"><i class="bi bi-shield-check"></i> <strong>Insurance:</strong> @Model.Insurance</div>
+
+                        <div class="col-6"><i class="bi bi-gear-wide-connected"></i> <strong>Transmission:</strong> @Model.Transmission</div>
+                        <div class="col-6"><i class="bi bi-people"></i> <strong>Seats:</strong> @Model.Seats</div>
+
+                        <div class="col-6"><i class="bi bi-lightning-charge"></i> <strong>Power:</strong> @Model.Power BHP</div>
+                        <div class="col-6"><i class="bi bi-cpu"></i> <strong>Displacement:</strong> @Model.Displacement cc</div>
+
+                        <div class="col-6"><i class="bi bi-graph-up"></i> <strong>Mileage:</strong> @Model.Mileage km/l</div>
+                        <div class="col-6"><i class="bi bi-arrows-expand"></i> <strong>Ground Clearance:</strong> @Model.GroundClearance</div>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-6"><strong>Fuel Type:</strong> @Model.FuelType</div>
-                        <div class="col-6"><strong>Owner Count:</strong> @Model.OwnerCount</div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-6"><strong>KM Driven:</strong> @Model.KMDriven km</div>
-                        <div class="col-6"><strong>Insurance:</strong> @Model.Insurance</div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-6"><strong>Transmission:</strong> @Model.Transmission</div>
-                        <div class="col-6"><strong>Seats:</strong> @Model.Seats</div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-6"><strong>Power:</strong> @Model.Power BHP</div>
-                        <div class="col-6"><strong>Displacement:</strong> @Model.Displacement cc</div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-6"><strong>Mileage:</strong> @Model.Mileage km/l</div>
-                        <div class="col-6"><strong>Ground Clearance:</strong> @Model.GroundClearance</div>
-                    </div>
-                    
-                    <h4 class="text-success mt-4">₹ @Model.Price.ToString("N2")</h4>
+
+                    <hr class="my-4">
+
+                    <h3 class="text-success fw-bold">₹ @Model.Price.ToString("N2")</h3>
 
                     @if (Model.IsFeatured)
                     {
-                        <span class="badge bg-warning text-dark">Featured</span>
+                        <span class="badge bg-warning text-dark px-3 py-2">⭐ Featured</span>
                     }
 
-                    <div class="mt-4">
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestDetailsModal">
-                            Request Details
+                    <div class="mt-4 d-flex gap-2">
+                        <a asp-action="Index" class="btn btn-outline-secondary px-4">Back to List</a>
+                        <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#requestDetailsModal">
+                            <i class="bi bi-envelope"></i> Request Details
                         </button>
                     </div>
                 </div>
@@ -60,126 +63,40 @@
 </div>
 
 
-
 <!-- Request Details Modal -->
 <div class="modal fade" id="requestDetailsModal" tabindex="-1" aria-labelledby="requestDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0 rounded-3">
             <form asp-action="SendRequestDetails" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="requestDetailsModalLabel">Request Car Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="requestDetailsModalLabel"><i class="bi bi-envelope-paper"></i> Request Car Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <input type="hidden" name="CarId" value="@Model.Id" />
 
                     <div class="mb-3">
                         <label for="Name" class="form-label">Your Name</label>
-                        <input type="text" class="form-control" name="Name" required />
+                        <input type="text" class="form-control rounded-2" name="Name" required />
                     </div>
                     <div class="mb-3">
                         <label for="Phone" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" name="Phone" required />
+                        <input type="tel" class="form-control rounded-2" name="Phone" required />
                     </div>
                     <div class="mb-3">
                         <label for="Email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" name="Email" required />
+                        <input type="email" class="form-control rounded-2" name="Email" required />
                     </div>
                     <div class="mb-3">
                         <label for="Message" class="form-label">Additional Message</label>
-                        <textarea class="form-control" name="Message" rows="3"></textarea>
+                        <textarea class="form-control rounded-2" name="Message" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Send Request</button>
+                    <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary px-4">Send Request</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-
-
-@* 
-@{
-    ViewData["Title"] = "Car Details";
-}
-<div class="container">
-    <h2 class="mb-4">Car Details</h2>
-
-    <div class="card shadow-lg p-4">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid rounded" />
-            </div>
-            <div class="col-md-8">
-                <h3>@Model.Title</h3>
-                <dl class="row">
-                    <dt class="col-sm-4">Make</dt>
-                    <dd class="col-sm-8">@Model.Make</dd>
-
-                    <dt class="col-sm-4">Model</dt>
-                    <dd class="col-sm-8">@Model.Model</dd>
-
-                    <dt class="col-sm-4">Registration Month</dt>
-                    <dd class="col-sm-8">@Model.RegistrationMonth</dd>
-
-                    <dt class="col-sm-4">Registration Year</dt>
-                    <dd class="col-sm-8">@Model.RegistrationYear</dd>
-
-                    <dt class="col-sm-4">Manufacture Year</dt>
-                    <dd class="col-sm-8">@Model.ManufactureYear</dd>
-
-                    <dt class="col-sm-4">Fuel Type</dt>
-                    <dd class="col-sm-8">@Model.FuelType</dd>
-
-                    <dt class="col-sm-4">Owner Count</dt>
-                    <dd class="col-sm-8">@Model.OwnerCount</dd>
-
-                    <dt class="col-sm-4">Kilometers Driven</dt>
-                    <dd class="col-sm-8">@Model.KMDriven km</dd>
-
-                    <dt class="col-sm-4">Price</dt>
-                    <dd class="col-sm-8">₹@Model.Price.ToString("N2")</dd>
-
-                    <dt class="col-sm-4">Insurance</dt>
-                    <dd class="col-sm-8">@Model.Insurance</dd>
-
-                    <dt class="col-sm-4">Seats</dt>
-                    <dd class="col-sm-8">@Model.Seats</dd>
-
-                    <dt class="col-sm-4">Displacement (cc)</dt>
-                    <dd class="col-sm-8">@Model.Displacement</dd>
-
-                    <dt class="col-sm-4">Power (bhp)</dt>
-                    <dd class="col-sm-8">@Model.Power</dd>
-
-                    <dt class="col-sm-4">Mileage (kmpl)</dt>
-                    <dd class="col-sm-8">@Model.Mileage</dd>
-
-                    <dt class="col-sm-4">Drive Type</dt>
-                    <dd class="col-sm-8">@Model.DriveType</dd>
-
-                    <dt class="col-sm-4">Transmission</dt>
-                    <dd class="col-sm-8">@Model.Transmission</dd>
-
-                    <dt class="col-sm-4">Ground Clearance</dt>
-                    <dd class="col-sm-8">@Model.GroundClearance</dd>
-
-                    <dt class="col-sm-4">Featured?</dt>
-                    <dd class="col-sm-8">
-                        @if (Model.IsFeatured)
-                        {
-                            <span class="badge bg-success">Yes</span>
-                        }
-                        else
-                        {
-                            <span class="badge bg-secondary">No</span>
-                        }
-                    </dd>
-                </dl>
-            </div>
-        </div>
-    </div>
-</div> *@

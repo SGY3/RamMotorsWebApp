@@ -5,57 +5,123 @@
     ViewData["Title"] = "Car Listings";
 }
 
-<div class="container">
-    @*     <h2 class="text-center">Buy Used Cars</h2>
-    <div class="row">
-    @foreach (var car in Model.FeaturedCars)
-    {
-        <div class="col-md-3 mb-3">
-            <div class="card h-100 shadow-sm">
-                <img src="@car.ImageUrl" class="card-img-top" alt="Honda City">
-                <div class="card-body">
-                    <h5 class="card-title">@car.Make @car.Model @car.RegistrationYear</h5>
-                    <p class="card-text">₹@car.Price - "car.City"</p>
-                    <a href="/Car/Details/@car.Id" class="btn btn-sm btn-primary">View</a>
-                </div>
+<!-- Page Header -->
+<section class="py-5 bg-light border-bottom">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-2 text-dark">🚗 Available Cars</h2>
+        <p class="text-muted">Browse our collection of verified used cars with the best deals</p>
+    </div>
+</section>
+
+<!-- Filters / Search -->
+<section class="py-4 bg-white shadow-sm sticky-top" style="z-index: 1020;">
+    <div class="container">
+        <form class="row g-3 align-items-center">
+            <div class="col-md-3">
+                <input type="text" class="form-control rounded-pill" placeholder="🔍 Search by Make/Model" />
             </div>
-        </div>
-    }
-</div> *@
+            <div class="col-md-2">
+                <select class="form-select rounded-pill">
+                    <option selected>Fuel Type</option>
+                    <option>Petrol</option>
+                    <option>Diesel</option>
+                    <option>CNG</option>
+                    <option>EV</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-select rounded-pill">
+                    <option selected>Year</option>
+                    <option>2024</option>
+                    <option>2023</option>
+                    <option>2022</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-select rounded-pill">
+                    <option selected>Sort by</option>
+                    <option>Price (Low → High)</option>
+                    <option>Price (High → Low)</option>
+                    <option>Latest</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-grid">
+                <button class="btn btn-primary rounded-pill fw-semibold">Apply Filters</button>
+            </div>
+        </form>
+    </div>
+</section>
 
-
-    <h2 class="mb-4">Available Cars</h2>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach (var car in Model.FeaturedCars)
+<!-- Car Listings -->
+<section class="py-5">
+    <div class="container">
+        @if (Model.FeaturedCars != null && Model.FeaturedCars.Any())
         {
-            <div class="col">
-                <div class="card h-100 shadow-sm border-0">
-                    <img src="@car.ImageUrl" class="card-img-top" alt="@car.Title" style="height: 200px; object-fit: cover;" />
-                    <div class="card-body">
-                        <h5 class="card-title">@car.Title</h5>
-                        <p class="card-text text-muted">@car.Make @car.Model</p>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @foreach (var car in Model.FeaturedCars)
+                {
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 position-relative car-card overflow-hidden">
+                            <!-- Car Image -->
+                            <div class="overflow-hidden">
+                                <img src="@car.ImageUrl" class="card-img-top rounded-top car-img" alt="@car.Title" style="height: 220px; object-fit: cover;" />
+                            </div>
 
-                        <ul class="list-unstyled small mb-3">
-                            <li><strong>Fuel:</strong> @car.FuelType</li>
-                            <li><strong>KM Driven:</strong> @car.KMDriven km</li>
-                            <li><strong>Year:</strong> @car.RegistrationYear</li>
-                            <li><strong>Price:</strong> ₹@car.Price.ToString("N2")</li>
-                        </ul>
+                            <!-- Car Body -->
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold text-dark">@car.Title</h5>
+                                <p class="card-text text-muted">@car.Make @car.Model</p>
 
-                        <a href="@Url.Action("Details", "Car", new { id = car.Id })" class="btn btn-primary w-100">
-                            View Details
-                        </a>
-                    </div>
+                                <ul class="list-unstyled small mb-3 text-secondary">
+                                    <li><strong>Fuel:</strong> @car.FuelType</li>
+                                    <li><strong>KM Driven:</strong> @car.KMDriven km</li>
+                                    <li><strong>Year:</strong> @car.RegistrationYear</li>
+                                </ul>
 
-                    @if (car.IsFeatured)
-                    {
-                        <div class="position-absolute top-0 end-0 m-2">
-                            <span class="badge bg-warning text-dark">Featured</span>
+                                <p class="h5 text-primary fw-bold mb-4">₹@car.Price.ToString("N0")</p>
+
+                                <a href="@Url.Action("Details", "Car", new { id = car.Id })" class="btn btn-outline-primary rounded-pill mt-auto fw-semibold">
+                                    View Details
+                                </a>
+                            </div>
+
+                            <!-- Featured Badge -->
+                            @if (car.IsFeatured)
+                            {
+                                <div class="position-absolute top-0 start-0 m-2">
+                                    <span class="badge bg-warning text-dark px-3 py-2 rounded-pill shadow-sm">⭐ Featured</span>
+                                </div>
+                            }
                         </div>
-                    }
-                </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info text-center rounded-3 shadow-sm" role="alert">
+                🚘 No cars available at the moment. Please check back later!
             </div>
         }
     </div>
-</div>
+</section>
+
+<!-- Custom Styles -->
+<style>
+    .car-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+    .car-img {
+        transition: transform 0.4s ease;
+    }
+
+    .car-card:hover .car-img {
+        transform: scale(1.05);
+    }
+</style>
